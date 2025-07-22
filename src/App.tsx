@@ -9,6 +9,11 @@ import ProductDetail from './components/ProductDetail';
 import Cart from './components/Cart';
 import Checkout from './components/Checkout';
 import SearchResults from './components/SearchResults';
+import ProductsPage from './components/ProductsPage';
+import OffersPage from './components/OffersPage';
+import AboutPage from './components/AboutPage';
+import FAQPage from './components/FAQPage';
+import FAQSection from './components/FAQSection';
 import Footer from './components/Footer';
 import { products, categories } from './data/products';
 import { Product } from './types';
@@ -16,7 +21,7 @@ import { Product } from './types';
 function App() {
   const [currentPage, setCurrentPage] = useState('home');
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
-  const [selectedCategory, setSelectedCategory] = useState<string>('');
+  const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState<Product[]>([]);
 
@@ -46,16 +51,18 @@ function App() {
   };
 
   const getFilteredProducts = () => {
-    if (selectedCategory) {
-      return products.filter(product => product.category === selectedCategory);
+    if (selectedCategory === 'all') {
+      return products;
     }
-    return products;
+    return products.filter(product => product.category === selectedCategory);
   };
 
   const getCategoryName = (categoryId: string) => {
+    if (categoryId === 'all') return 'All Products';
     const category = categories.find(cat => cat.id === categoryId);
     return category ? category.name : 'All Products';
   };
+
   const renderPage = () => {
     switch (currentPage) {
       case 'product':
@@ -78,68 +85,16 @@ function App() {
         );
       
       case 'products':
-      case 'categories':
-        return (
-          <div className="min-h-screen bg-gray-50">
-            <div className="bg-white py-8">
-              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h1 className="text-3xl font-bold text-gray-900 text-center">
-                  {selectedCategory ? 
-                    `${getCategoryName(selectedCategory)} Products` : 
-                    'All Products'}
-                </h1>
-              </div>
-            </div>
-            <HorizontalProductSlider 
-              products={getFilteredProducts()} 
-              title=""
-              onNavigate={handleNavigation} 
-            />
-          </div>
-        );
+        return <ProductsPage onNavigate={handleNavigation} />;
+      
+      case 'offers':
+        return <OffersPage onNavigate={handleNavigation} />;
       
       case 'about':
-        return (
-          <div className="min-h-screen bg-gray-50">
-            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-              <div className="bg-white rounded-xl shadow-lg p-8">
-                <h1 className="text-4xl font-bold text-gray-900 mb-6 text-center">About Maliha's Miracle</h1>
-                <div className="prose max-w-none">
-                  <p className="text-lg text-gray-700 leading-relaxed mb-6">
-                    Welcome to Maliha's Miracle, your trusted partner in natural wellness and organic beauty. 
-                    We believe that nature holds the key to healthy, radiant living, and our mission is to 
-                    bring you the finest organic healthcare products that nurture your body and soul.
-                  </p>
-                  <p className="text-gray-700 leading-relaxed mb-6">
-                    Founded with a passion for natural healing, Maliha's Miracle specializes in carefully 
-                    crafted organic products including hair oils, hair masks, hair tonics, lip balms, and soaps. 
-                    Each product is made with love, using traditional recipes combined with modern quality standards.
-                  </p>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8 my-8">
-                    <div className="bg-green-50 p-6 rounded-lg">
-                      <h3 className="text-xl font-semibold text-green-800 mb-3">Our Promise</h3>
-                      <ul className="space-y-2 text-gray-700">
-                        <li>• 100% Organic Ingredients</li>
-                        <li>• No Harmful Chemicals</li>
-                        <li>• Cruelty-Free Products</li>
-                        <li>• Sustainable Packaging</li>
-                      </ul>
-                    </div>
-                    <div className="bg-blue-50 p-6 rounded-lg">
-                      <h3 className="text-xl font-semibold text-blue-800 mb-3">Why Choose Us</h3>
-                      <ul className="space-y-2 text-gray-700">
-                        <li>• Expert Formulations</li>
-                        <li>• Quality Assurance</li>
-                        <li>• Fast Delivery</li>
-                        <li>• Customer Support</li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        );
+        return <AboutPage onNavigate={handleNavigation} />;
+      
+      case 'faq':
+        return <FAQPage onNavigate={handleNavigation} />;
       
       default:
         return (
@@ -151,41 +106,27 @@ function App() {
               selectedCategory={selectedCategory}
             />
             
-            {/* Category-based Product Slider */}
-            {selectedCategory && (
-              <HorizontalProductSlider 
-                products={products.filter(p => p.category === selectedCategory).slice(0, 15)} 
-                title={`${getCategoryName(selectedCategory)} Products`}
-                onNavigate={handleNavigation} 
-                bgColor="bg-white"
-              />
-            )}
+            {/* Selected Category Products */}
+            <HorizontalProductSlider 
+              products={getFilteredProducts().slice(0, 20)} 
+              title={getCategoryName(selectedCategory)}
+              onNavigate={handleNavigation} 
+              bgColor="bg-white"
+            />
             
             {/* Combo Offers Section */}
             <ComboOfferSection onNavigate={handleNavigation} />
             
-            <div className="space-y-4">
-              <HorizontalProductSlider 
-                products={products.filter(p => p.badge === 'Best Seller').slice(0, 15)} 
-                title="Best Selling Products" 
-                onNavigate={handleNavigation} 
-                bgColor="bg-gray-50"
-              />
-              
-              <HorizontalProductSlider 
-                products={products.filter(p => p.badge === 'New').slice(0, 15)} 
-                title="New Arrivals" 
-                onNavigate={handleNavigation} 
-                bgColor="bg-green-50"
-              />
-              
-              <HorizontalProductSlider 
-                products={products.filter(p => p.originalPrice && p.originalPrice > p.price).slice(0, 15)} 
-                title="Special Offers" 
-                onNavigate={handleNavigation} 
-                bgColor="bg-blue-50"
-              />
-            </div>
+            {/* Best Selling Products */}
+            <HorizontalProductSlider 
+              products={products.filter(p => p.badge === 'Best Seller').slice(0, 20)} 
+              title="Best Selling Products" 
+              onNavigate={handleNavigation} 
+              bgColor="bg-gray-50"
+            />
+            
+            {/* FAQ Section */}
+            <FAQSection />
           </div>
         );
     }

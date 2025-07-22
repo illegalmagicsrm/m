@@ -12,19 +12,16 @@ export default function ProductCard({ product, onNavigate }: ProductCardProps) {
   const { addToCart } = useCart();
   const [isAddingToCart, setIsAddingToCart] = useState(false);
   const [showAddedAnimation, setShowAddedAnimation] = useState(false);
-  const [selectedSize, setSelectedSize] = useState('100ml');
 
   const handleAddToCart = async (e: React.MouseEvent) => {
     e.stopPropagation();
     setIsAddingToCart(true);
     
-    // Simulate adding to cart with animation
     setTimeout(() => {
       addToCart(product);
       setIsAddingToCart(false);
       setShowAddedAnimation(true);
       
-      // Hide animation after 2.5 seconds
       setTimeout(() => {
         setShowAddedAnimation(false);
       }, 2500);
@@ -41,13 +38,11 @@ export default function ProductCard({ product, onNavigate }: ProductCardProps) {
     ? Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)
     : 0;
 
-  const sizes = ['50ml', '100ml', '200ml'];
-
   return (
-    <div className="group relative bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-500 transform hover:-translate-y-1 overflow-hidden border border-gray-100">
+    <div className="group relative bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-500 transform hover:-translate-y-1 overflow-hidden border border-gray-100 w-44 md:w-52">
       {/* Discount Badge */}
       {discountPercentage > 0 && (
-        <div className="absolute top-3 left-3 z-20">
+        <div className="absolute top-2 left-2 z-20">
           <div className="bg-gradient-to-r from-red-500 to-pink-500 text-white text-xs font-bold px-2 py-1 rounded-full shadow-lg">
             -{discountPercentage}%
           </div>
@@ -56,7 +51,7 @@ export default function ProductCard({ product, onNavigate }: ProductCardProps) {
 
       {/* Product Badge */}
       {product.badge && (
-        <div className="absolute top-3 right-3 z-20">
+        <div className="absolute top-2 right-2 z-20">
           <span className={`px-2 py-1 text-xs font-semibold rounded-full shadow-lg ${
             product.badge === 'Best Seller' ? 'bg-gradient-to-r from-green-400 to-green-600 text-white' :
             product.badge === 'New' ? 'bg-gradient-to-r from-blue-400 to-blue-600 text-white' :
@@ -68,7 +63,7 @@ export default function ProductCard({ product, onNavigate }: ProductCardProps) {
       )}
 
       {/* Wishlist Button */}
-      <button className="absolute top-12 right-3 z-20 p-1.5 bg-white/80 backdrop-blur-sm rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-all duration-300 hover:bg-white hover:scale-110">
+      <button className="absolute top-10 right-2 z-20 p-1.5 bg-white/80 backdrop-blur-sm rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-all duration-300 hover:bg-white hover:scale-110">
         <Heart className="h-3 w-3 text-gray-600 hover:text-red-500 transition-colors" />
       </button>
 
@@ -83,7 +78,6 @@ export default function ProductCard({ product, onNavigate }: ProductCardProps) {
           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
         />
         
-        {/* Gradient Overlay */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
       </div>
 
@@ -97,7 +91,7 @@ export default function ProductCard({ product, onNavigate }: ProductCardProps) {
           {product.name}
         </h3>
 
-        {/* Rating & Reviews - Compact */}
+        {/* Rating & Stock Status */}
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-1">
             <div className="flex items-center">
@@ -113,12 +107,11 @@ export default function ProductCard({ product, onNavigate }: ProductCardProps) {
             <span className="text-xs text-gray-600">({product.reviews})</span>
           </div>
           
-          {/* Stock Status - Compact */}
           <div className="flex items-center">
             {product.inStock ? (
               <div className="flex items-center text-green-600">
                 <div className="w-1.5 h-1.5 bg-green-500 rounded-full mr-1 animate-pulse" />
-                <span className="text-xs font-medium">In Stock</span>
+                <span className="text-xs font-medium">Stock</span>
               </div>
             ) : (
               <div className="flex items-center text-red-600">
@@ -136,26 +129,6 @@ export default function ProductCard({ product, onNavigate }: ProductCardProps) {
             {product.originalPrice && (
               <span className="text-sm text-gray-500 line-through">৳{product.originalPrice}</span>
             )}
-          </div>
-        </div>
-
-        {/* Size Options - Compact */}
-        <div className="flex items-center justify-between">
-          <span className="text-xs text-gray-600">Size:</span>
-          <div className="flex space-x-1">
-            {sizes.slice(0, 3).map((size) => (
-              <button
-                key={size}
-                onClick={() => setSelectedSize(size)}
-                className={`text-xs px-2 py-1 rounded border transition-colors ${
-                  selectedSize === size 
-                    ? 'border-green-500 bg-green-50 text-green-700' 
-                    : 'border-gray-300 text-gray-600 hover:border-green-500'
-                }`}
-              >
-                {size}
-              </button>
-            ))}
           </div>
         </div>
 
@@ -194,7 +167,7 @@ export default function ProductCard({ product, onNavigate }: ProductCardProps) {
 
       {/* Enhanced Added to Cart Animation */}
       {showAddedAnimation && (
-        <div className="absolute inset-0 bg-gradient-to-br from-green-500/95 to-emerald-600/95 backdrop-blur-sm flex items-center justify-center rounded-2xl z-30">
+        <div className="absolute inset-0 bg-gradient-to-br from-green-500/95 to-emerald-600/95 backdrop-blur-sm flex items-center justify-center rounded-xl z-30">
           <div className="text-white text-center animate-bounce">
             <div className="bg-white/20 rounded-full p-4 mb-3 mx-auto w-fit animate-pulse">
               <Check className="h-8 w-8" />
