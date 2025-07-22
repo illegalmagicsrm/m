@@ -52,6 +52,7 @@ export default function CartPanel({ isOpen, onClose, onNavigate }: CartPanelProp
       <div className={`fixed right-0 top-0 h-full w-full max-w-md bg-white shadow-2xl z-50 transform transition-transform duration-300 ${
         isOpen ? 'translate-x-0' : 'translate-x-full'
       }`}>
+        <div className={`transition-opacity duration-300 ${isOpen ? 'opacity-100' : 'opacity-0'}`}>
         <div className="flex flex-col h-full">
           {/* Header */}
           <div className="flex items-center justify-between p-6 border-b bg-gradient-to-r from-green-500 to-green-600 text-white">
@@ -205,6 +206,7 @@ export default function CartPanel({ isOpen, onClose, onNavigate }: CartPanelProp
               </button>
             </div>
           )}
+        </div>
         </div>
       </div>
     </>

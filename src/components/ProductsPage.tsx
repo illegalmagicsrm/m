@@ -79,7 +79,7 @@ export default function ProductsPage({ onNavigate }: ProductsPageProps) {
         <div className="flex flex-col lg:flex-row gap-8">
           {/* Filters Sidebar */}
           <div className="lg:w-64 flex-shrink-0">
-            <div className="bg-white rounded-xl shadow-lg p-6 sticky top-4">
+            <div className="bg-white rounded-xl shadow-lg p-6 lg:sticky lg:top-4">
               <div className="flex items-center mb-6">
                 <Filter className="h-5 w-5 text-gray-600 mr-2" />
                 <h2 className="text-lg font-semibold text-gray-900">Filters</h2>
@@ -108,18 +108,51 @@ export default function ProductsPage({ onNavigate }: ProductsPageProps) {
               {/* Price Filter */}
               <div className="mb-6">
                 <h3 className="font-medium text-gray-900 mb-3">Price Range</h3>
-                <div className="space-y-2">
-                  <input
-                    type="range"
-                    min="0"
-                    max="1000"
-                    value={priceRange[1]}
-                    onChange={(e) => setPriceRange([0, parseInt(e.target.value)])}
-                    className="w-full"
-                  />
-                  <div className="flex justify-between text-sm text-gray-600">
-                    <span>৳0</span>
-                    <span>৳{priceRange[1]}</span>
+                <div className="space-y-3">
+                  <label className="flex items-center">
+                    <input
+                      type="radio"
+                      name="price"
+                      value="all"
+                      checked={priceRange[1] === 1000}
+                      onChange={() => setPriceRange([0, 1000])}
+                      className="text-green-600 focus:ring-green-500"
+                    />
+                    <span className="ml-2 text-sm text-gray-700">All Prices</span>
+                  </label>
+                  <label className="flex items-center">
+                    <input
+                      type="radio"
+                      name="price"
+                      value="under-200"
+                      checked={priceRange[1] === 200}
+                      onChange={() => setPriceRange([0, 200])}
+                      className="text-green-600 focus:ring-green-500"
+                    />
+                    <span className="ml-2 text-sm text-gray-700">Under ৳200</span>
+                  </label>
+                  <label className="flex items-center">
+                    <input
+                      type="radio"
+                      name="price"
+                      value="200-500"
+                      checked={priceRange[0] === 200 && priceRange[1] === 500}
+                      onChange={() => setPriceRange([200, 500])}
+                      className="text-green-600 focus:ring-green-500"
+                    />
+                    <span className="ml-2 text-sm text-gray-700">৳200 - ৳500</span>
+                  </label>
+                  <label className="flex items-center">
+                    <input
+                      type="radio"
+                      name="price"
+                      value="above-500"
+                      checked={priceRange[0] === 500}
+                      onChange={() => setPriceRange([500, 1000])}
+                      className="text-green-600 focus:ring-green-500"
+                    />
+                    <span className="ml-2 text-sm text-gray-700">Above ৳500</span>
+                  </label>
                   </div>
                 </div>
               </div>
@@ -160,6 +193,17 @@ export default function ProductsPage({ onNavigate }: ProductsPageProps) {
                       className="text-green-600 focus:ring-green-500"
                     />
                     <span className="ml-2 text-sm text-gray-700">Out of Stock</span>
+                  </label>
+                  <label className="flex items-center">
+                    <input
+                      type="radio"
+                      name="stock"
+                      value="pre-order"
+                      checked={stockFilter === 'pre-order'}
+                      onChange={(e) => setStockFilter(e.target.value)}
+                      className="text-green-600 focus:ring-green-500"
+                    />
+                    <span className="ml-2 text-sm text-gray-700">Pre Order</span>
                   </label>
                 </div>
               </div>
@@ -208,10 +252,10 @@ export default function ProductsPage({ onNavigate }: ProductsPageProps) {
 
             {/* Products */}
             {filteredProducts.length > 0 ? (
-              <div className={`grid gap-4 ${
-                viewMode === 'grid' 
-                  ? 'grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5' 
-                  : 'grid-cols-1'
+              <div className={`grid gap-6 ${
+                viewMode === 'grid'
+                  ? 'grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4'
+                  : 'grid-cols-1 sm:grid-cols-2'
               }`}>
                 {filteredProducts.map((product) => (
                   <ProductCard key={product.id} product={product} onNavigate={onNavigate} />

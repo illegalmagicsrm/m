@@ -8,67 +8,17 @@ interface CheckoutProps {
 }
 
 // Bangladesh districts and their thanas
-const bangladeshData = {
-  "Dhaka": ["Dhamrai", "Dohar", "Keraniganj", "Nawabganj", "Savar"],
-  "Chittagong": ["Anwara", "Banshkhali", "Boalkhali", "Chandanaish", "Fatikchhari"],
-  "Rajshahi": ["Bagha", "Bagmara", "Charghat", "Durgapur", "Godagari"],
-  "Khulna": ["Batiaghata", "Dacope", "Dumuria", "Dighalia", "Koyra"],
-  "Barisal": ["Agailjhara", "Babuganj", "Bakerganj", "Banariparah", "Gaurnadi"],
-  "Sylhet": ["Balaganj", "Beanibazar", "Bishwanath", "Companiganj", "Fenchuganj"],
-  "Rangpur": ["Badarganj", "Gangachara", "Kaunia", "Mithapukur", "Pirgachha"],
-  "Mymensingh": ["Bhaluka", "Dhobaura", "Fulbaria", "Gaffargaon", "Gouripur"],
-  "Comilla": ["Barura", "Brahmanpara", "Burichang", "Chandina", "Chauddagram"],
-  "Gazipur": ["Gazipur Sadar", "Kaliakair", "Kaliganj", "Kapasia", "Sreepur"],
-  "Narayanganj": ["Araihazar", "Bandar", "Narayanganj Sadar", "Rupganj", "Sonargaon"],
-  "Tangail": ["Basail", "Bhuapur", "Delduar", "Ghatail", "Gopalpur"],
-  "Jessore": ["Abhaynagar", "Bagherpara", "Chaugachha", "Jhikargachha", "Keshabpur"],
-  "Bogra": ["Adamdighi", "Bogra Sadar", "Dhunat", "Dhupchanchia", "Gabtali"],
-  "Dinajpur": ["Birampur", "Birganj", "Biral", "Bochaganj", "Chirirbandar"],
-  "Kushtia": ["Bheramara", "Daulatpur", "Khoksa", "Kumarkhali", "Kushtia Sadar"],
-  "Pabna": ["Atgharia", "Bera", "Bhangura", "Chatmohar", "Faridpur"],
-  "Faridpur": ["Alfadanga", "Bhanga", "Boalmari", "Charbhadrasan", "Faridpur Sadar"],
-  "Jamalpur": ["Bakshiganj", "Dewanganj", "Islampur", "Jamalpur Sadar", "Madarganj"],
-  "Kishoreganj": ["Austagram", "Bajitpur", "Bhairab", "Hossainpur", "Itna"],
-  "Madaripur": ["Kalkini", "Madaripur Sadar", "Rajoir", "Shibchar"],
-  "Manikganj": ["Daulatpur", "Ghior", "Harirampur", "Manikganj Sadar", "Saturia"],
-  "Munshiganj": ["Gazaria", "Lohajang", "Munshiganj Sadar", "Serajdikhan", "Sreenagar"],
-  "Narsingdi": ["Belabo", "Monohardi", "Narsingdi Sadar", "Palash", "Raipura"],
-  "Rajbari": ["Baliakandi", "Goalandaghat", "Pangsha", "Rajbari Sadar"],
-  "Shariatpur": ["Bhedarganj", "Damudya", "Gosairhat", "Naria", "Shariatpur Sadar"],
-  "Cox's Bazar": ["Chakaria", "Cox's Bazar Sadar", "Kutubdia", "Maheshkhali", "Ramu"],
-  "Feni": ["Chhagalnaiya", "Daganbhuiyan", "Feni Sadar", "Parshuram", "Sonagazi"],
-  "Brahmanbaria": ["Akhaura", "Bancharampur", "Bijoynagar", "Brahmanbaria Sadar", "Kasba"],
-  "Lakshmipur": ["Kamalnagar", "Lakshmipur Sadar", "Raipur", "Ramganj", "Ramgati"],
-  "Noakhali": ["Begumganj", "Chatkhil", "Companiganj", "Hatiya", "Kabirhat"],
-  "Habiganj": ["Ajmiriganj", "Bahubal", "Baniyachong", "Chunarughat", "Habiganj Sadar"],
-  "Moulvibazar": ["Barlekha", "Juri", "Kamalganj", "Kulaura", "Moulvibazar Sadar"],
-  "Sunamganj": ["Bishwamvarpur", "Chhatak", "Derai", "Dharamapasha", "Dowarabazar"],
-  "Panchagarh": ["Atwari", "Boda", "Debiganj", "Panchagarh Sadar", "Tetulia"],
-  "Thakurgaon": ["Baliadangi", "Haripur", "Pirganj", "Ranisankail", "Thakurgaon Sadar"],
-  "Nilphamari": ["Dimla", "Domar", "Jaldhaka", "Kishoreganj", "Nilphamari Sadar"],
-  "Lalmonirhat": ["Aditmari", "Hatibandha", "Kaliganj", "Lalmonirhat Sadar", "Patgram"],
-  "Kurigram": ["Bhurungamari", "Char Rajibpur", "Chilmari", "Kurigram Sadar", "Nageshwari"],
-  "Gaibandha": ["Fulchhari", "Gaibandha Sadar", "Gobindaganj", "Palashbari", "Sadullapur"],
-  "Jaipurhat": ["Akkelpur", "Jaipurhat Sadar", "Kalai", "Khetlal", "Panchbibi"],
-  "Chapainawabganj": ["Bholahat", "Gomastapur", "Nachole", "Nawabganj Sadar", "Shibganj"],
-  "Naogaon": ["Atrai", "Badalgachhi", "Dhamoirhat", "Manda", "Mahadebpur"],
-  "Natore": ["Bagatipara", "Baraigram", "Gurudaspur", "Lalpur", "Natore Sadar"],
-  "Sirajganj": ["Belkuchi", "Chauhali", "Kamarkhanda", "Kazipur", "Raiganj"],
-  "Bagerhat": ["Bagerhat Sadar", "Chitalmari", "Fakirhat", "Kachua", "Mollahat"],
-  "Chuadanga": ["Alamdanga", "Chuadanga Sadar", "Damurhuda", "Jibannagar"],
-  "Jhenaidah": ["Harinakunda", "Jhenaidah Sadar", "Kaliganj", "Kotchandpur", "Maheshpur"],
-  "Magura": ["Magura Sadar", "Mohammadpur", "Salikha", "Sreepur"],
-  "Meherpur": ["Gangni", "Meherpur Sadar", "Mujibnagar"],
-  "Narail": ["Kalia", "Lohagara", "Narail Sadar"],
-  "Satkhira": ["Assasuni", "Debhata", "Kalaroa", "Kaliganj", "Satkhira Sadar"],
-  "Bhola": ["Bhola Sadar", "Burhanuddin", "Char Fasson", "Daulatkhan", "Lalmohan"],
-  "Jhalokati": ["Jhalokati Sadar", "Kathalia", "Nalchity", "Rajapur"],
-  "Patuakhali": ["Bauphal", "Dashmina", "Dumki", "Galachipa", "Kalapara"],
-  "Pirojpur": ["Bhandaria", "Kawkhali", "Mathbaria", "Nazirpur", "Pirojpur Sadar"],
-  "Barguna": ["Amtali", "Bamna", "Barguna Sadar", "Betagi", "Patharghata"],
-  "Netrokona": ["Atpara", "Barhatta", "Durgapur", "Khaliajuri", "Kalmakanda"],
-  "Sherpur": ["Jhenaigati", "Nakla", "Nalitabari", "Sherpur Sadar", "Sreebardi"]
-};
+const bangladeshDistricts = [
+  "Bagerhat", "Bandarban", "Barguna", "Barisal", "Bhola", "Bogra", "Brahmanbaria", "Chandpur",
+  "Chittagong", "Chuadanga", "Comilla", "Cox's Bazar", "Dhaka", "Dinajpur", "Faridpur", "Feni",
+  "Gaibandha", "Gazipur", "Gopalganj", "Habiganj", "Jamalpur", "Jessore", "Jhalokati", "Jhenaidah",
+  "Joypurhat", "Khagrachhari", "Khulna", "Kishoreganj", "Kurigram", "Kushtia", "Lakshmipur",
+  "Lalmonirhat", "Madaripur", "Magura", "Manikganj", "Meherpur", "Moulvibazar", "Munshiganj",
+  "Mymensingh", "Naogaon", "Narail", "Narayanganj", "Narsingdi", "Natore", "Netrokona", "Nilphamari",
+  "Noakhali", "Pabna", "Panchagarh", "Patuakhali", "Pirojpur", "Rajbari", "Rajshahi", "Rangamati",
+  "Rangpur", "Satkhira", "Shariatpur", "Sherpur", "Sirajganj", "Sunamganj", "Sylhet", "Tangail",
+  "Thakurgaon"
+];
 
 export default function Checkout({ onNavigate }: CheckoutProps) {
   const { cart, clearCart } = useCart();
@@ -82,7 +32,6 @@ export default function Checkout({ onNavigate }: CheckoutProps) {
     postalCode: ''
   });
   const [selectedDistrict, setSelectedDistrict] = useState('');
-  const [selectedThana, setSelectedThana] = useState('');
   const [orderNote, setOrderNote] = useState('');
   const [paymentMethod, setPaymentMethod] = useState('');
 
@@ -107,8 +56,6 @@ export default function Checkout({ onNavigate }: CheckoutProps) {
     setCustomer(prev => ({ ...prev, [field]: value }));
   };
 
-  const districts = Object.keys(bangladeshData);
-  const thanas = selectedDistrict ? bangladeshData[selectedDistrict as keyof typeof bangladeshData] : [];
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -223,35 +170,13 @@ export default function Checkout({ onNavigate }: CheckoutProps) {
                     <select
                       required
                       value={selectedDistrict}
-                      onChange={(e) => {
-                        setSelectedDistrict(e.target.value);
-                        setSelectedThana(''); // Reset thana when district changes
-                      }}
+                      onChange={(e) => setSelectedDistrict(e.target.value)}
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all"
                     >
                       <option value="">Select District</option>
-                      {districts.map((district) => (
+                      {bangladeshDistricts.map((district) => (
                         <option key={district} value={district}>
                           {district}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Thana/Upazilla *
-                    </label>
-                    <select
-                      required
-                      value={selectedThana}
-                      onChange={(e) => setSelectedThana(e.target.value)}
-                      disabled={!selectedDistrict}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all disabled:bg-gray-100"
-                    >
-                      <option value="">Select Thana</option>
-                      {thanas.map((thana) => (
-                        <option key={thana} value={thana}>
-                          {thana}
                         </option>
                       ))}
                     </select>
@@ -351,7 +276,6 @@ export default function Checkout({ onNavigate }: CheckoutProps) {
                     <MapPin className="h-4 w-4 text-blue-600 mr-2" />
                     <span className="text-sm text-blue-800">
                       Shipping to: {selectedDistrict}
-                      {selectedThana && `, ${selectedThana}`}
                     </span>
                   </div>
                 </div>
