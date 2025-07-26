@@ -153,7 +153,6 @@ export default function ProductsPage({ onNavigate }: ProductsPageProps) {
                     />
                     <span className="ml-2 text-sm text-gray-700">Above ৳500</span>
                   </label>
-                  </div>
                 </div>
               </div>
 
@@ -281,6 +280,7 @@ export default function ProductsPage({ onNavigate }: ProductsPageProps) {
                   Clear Filters
                 </button>
               </div>
+            )}
           </div>
         </div>
       </div>
