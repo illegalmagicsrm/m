@@ -285,5 +285,6 @@ export default function ProductsPage({ onNavigate }: ProductsPageProps) {
         </div>
       </div>
     </div>
+    </div>
   );
 }
