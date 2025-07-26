@@ -281,7 +281,6 @@ export default function ProductsPage({ onNavigate }: ProductsPageProps) {
                   Clear Filters
                 </button>
               </div>
-            )}
           </div>
         </div>
       </div>
