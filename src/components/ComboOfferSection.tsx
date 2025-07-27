@@ -11,14 +11,16 @@ export default function ComboOfferSection({ onNavigate }: ComboOfferSectionProps
   const scrollRef = useRef<HTMLDivElement>(null);
 
   // Get combo offer products (products with original price - indicating discount)
-  const comboProducts = products.filter(p => p.originalPrice && p.originalPrice > p.price).slice(0, 10);
+  const comboProducts = products
+    .filter((p) => p.originalPrice && p.originalPrice > p.price)
+    .slice(0, 10);
 
   const scroll = (direction: 'left' | 'right') => {
     if (scrollRef.current) {
       const scrollAmount = 280; // Width of card + gap
       scrollRef.current.scrollBy({
         left: direction === 'left' ? -scrollAmount : scrollAmount,
-        behavior: 'smooth'
+        behavior: 'smooth',
       });
     }
   };
@@ -52,7 +54,7 @@ export default function ComboOfferSection({ onNavigate }: ComboOfferSectionProps
           >
             <ChevronLeft className="h-5 w-5" />
           </button>
-          
+
           {/* Right Arrow */}
           <button
             onClick={() => scroll('right')}
@@ -61,7 +63,7 @@ export default function ComboOfferSection({ onNavigate }: ComboOfferSectionProps
           >
             <ChevronRight className="h-5 w-5" />
           </button>
-          
+
           {/* Products Container */}
           <div
             ref={scrollRef}
@@ -71,10 +73,11 @@ export default function ComboOfferSection({ onNavigate }: ComboOfferSectionProps
             {comboProducts.map((product) => (
               <div key={product.id} className="flex-shrink-0">
                 <ProductCard product={product} onNavigate={onNavigate} />
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
-          )
-          )
-          }
     </section>
   );
 }
