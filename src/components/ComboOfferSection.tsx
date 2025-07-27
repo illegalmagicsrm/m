@@ -40,32 +40,40 @@ export default function ComboOfferSection({ onNavigate }: ComboOfferSectionProps
               <p className="text-gray-600">Special deals and discounts</p>
             </div>
           </div>
-          
-          <div className="hidden md:flex space-x-2">
-            <button
-              onClick={() => scroll('left')}
-              className="bg-white/90 backdrop-blur-sm hover:bg-white text-gray-700 hover:text-purple-600 p-2 rounded-full shadow-lg transition-all duration-200 hover:scale-110"
-            >
-              <ChevronLeft className="h-4 w-4" />
-            </button>
-            <button
-              onClick={() => scroll('right')}
-              className="bg-white/90 backdrop-blur-sm hover:bg-white text-gray-700 hover:text-purple-600 p-2 rounded-full shadow-lg transition-all duration-200 hover:scale-110"
-            >
-              <ChevronRight className="h-4 w-4" />
-            </button>
-          </div>
         </div>
 
-        {/* Horizontal Product Slider */}
-        <div
-          ref={scrollRef}
-          className="flex gap-3 md:gap-4 overflow-x-auto scrollbar-hide pb-2"
-          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-        >
-          {comboProducts.map((product) => (
-            <div key={product.id} className="flex-shrink-0">
-              <ProductCard product={product} onNavigate={onNavigate} />
+        {/* Horizontal Product Slider with Side Arrows */}
+        <div className="relative">
+          {/* Left Arrow */}
+          <button
+            onClick={() => scroll('left')}
+            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white/90 backdrop-blur-sm hover:bg-white text-gray-700 hover:text-purple-600 p-3 rounded-full shadow-lg transition-all duration-200 hover:scale-110"
+            style={{ marginLeft: '-20px' }}
+          >
+            <ChevronLeft className="h-5 w-5" />
+          </button>
+          
+          {/* Right Arrow */}
+          <button
+            onClick={() => scroll('right')}
+            className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white/90 backdrop-blur-sm hover:bg-white text-gray-700 hover:text-purple-600 p-3 rounded-full shadow-lg transition-all duration-200 hover:scale-110"
+            style={{ marginRight: '-20px' }}
+          >
+            <ChevronRight className="h-5 w-5" />
+          </button>
+          
+          {/* Products Container */}
+          <div
+            ref={scrollRef}
+            className="flex gap-3 md:gap-4 overflow-x-auto scrollbar-hide pb-2 px-8"
+            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+          >
+            {comboProducts.map((product) => (
+              <div key={product.id} className="flex-shrink-0">
+                <ProductCard product={product} onNavigate={onNavigate} />
+              </div>
+            ))}
+          </div>
             </div>
           ))}
         </div>

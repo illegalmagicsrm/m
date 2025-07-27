@@ -109,14 +109,14 @@ export default function ProductCard({ product, onNavigate }: ProductCardProps) {
           
           <div className="flex items-center">
             {product.inStock ? (
-              <div className="flex items-center text-green-600">
+              <div className="flex items-center text-green-600 whitespace-nowrap">
                 <div className="w-1.5 h-1.5 bg-green-500 rounded-full mr-1 animate-pulse" />
-                <span className="text-xs font-medium">Stock</span>
+                <span className="text-xs font-medium">In Stock</span>
               </div>
             ) : (
-              <div className="flex items-center text-red-600">
+              <div className="flex items-center text-red-600 whitespace-nowrap">
                 <div className="w-1.5 h-1.5 bg-red-500 rounded-full mr-1" />
-                <span className="text-xs font-medium">Out</span>
+                <span className="text-xs font-medium">Out of Stock</span>
               </div>
             )}
           </div>

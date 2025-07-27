@@ -37,7 +37,7 @@ export default function Header({ onNavigate, currentPage, onSearch }: HeaderProp
         {/* Top Bar */}
         <div className="bg-green-600 text-white py-2">
           <div className="max-w-7xl mx-auto px-4 text-center text-sm">
-            <span>🌿 Free shipping on orders over ৳500 | 100% Organic Products</span>
+            <span>🌿 Free shipping on orders over ৳1000 | 100% Organic Products</span>
           </div>
         </div>
 

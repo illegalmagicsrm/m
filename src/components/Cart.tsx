@@ -193,7 +193,7 @@ export default function Cart({ onNavigate }: CartProps) {
               {cart.total >= 500 && (
                 <div className="bg-green-50 border border-green-200 rounded-lg p-3 mb-6">
                   <p className="text-green-800 text-sm font-medium">
-                    🎉 You qualify for free shipping!
+                    🎉 You qualify for free shipping on orders over ৳1000!
                   </p>
                 </div>
               )}

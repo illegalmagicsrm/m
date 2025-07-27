@@ -52,7 +52,7 @@ export default function CartPanel({ isOpen, onClose, onNavigate }: CartPanelProp
       <div className={`fixed right-0 top-0 h-full w-full max-w-md bg-white shadow-2xl z-50 transform transition-transform duration-300 ${
         isOpen ? 'translate-x-0' : 'translate-x-full'
       }`}>
-        <div className={`transition-opacity duration-300 ${isOpen ? 'opacity-100' : 'opacity-0'}`}>
+        <div className={`transition-opacity duration-1000 delay-300 ${isOpen ? 'opacity-100' : 'opacity-0'}`}>
         <div className="flex flex-col h-full">
           {/* Header */}
           <div className="flex items-center justify-between p-6 border-b bg-gradient-to-r from-green-500 to-green-600 text-white">
@@ -193,7 +193,7 @@ export default function CartPanel({ isOpen, onClose, onNavigate }: CartPanelProp
               {cart.total >= 500 && (
                 <div className="bg-green-100 border border-green-200 rounded-lg p-3 mb-4">
                   <p className="text-green-800 text-sm font-medium">
-                    🎉 You qualify for free shipping!
+                    🎉 You qualify for free shipping on orders over ৳1000!
                   </p>
                 </div>
               )}

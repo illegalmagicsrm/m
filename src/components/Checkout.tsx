@@ -37,7 +37,7 @@ export default function Checkout({ onNavigate }: CheckoutProps) {
 
   // Calculate shipping based on district
   const getShippingCost = () => {
-    if (cart.total >= 500) return 0;
+    if (cart.total >= 1000) return 0;
     return selectedDistrict === 'Rajshahi' ? 40 : 120;
   };
 
@@ -296,7 +296,7 @@ export default function Checkout({ onNavigate }: CheckoutProps) {
                 {cart.total >= 500 && (
                   <div className="bg-green-50 border border-green-200 rounded-lg p-3">
                     <p className="text-green-800 text-sm font-medium">
-                      🎉 You qualify for free shipping!
+                      🎉 You qualify for free shipping on orders over ৳1000!
                     </p>
                   </div>
                 )}
