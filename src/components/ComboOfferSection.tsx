@@ -71,12 +71,6 @@ export default function ComboOfferSection({ onNavigate }: ComboOfferSectionProps
             {comboProducts.map((product) => (
               <div key={product.id} className="flex-shrink-0">
                 <ProductCard product={product} onNavigate={onNavigate} />
-              </div>
-            ))}
-          </div>
-            </div>
-          ))}
-        </div>
       </div>
     </section>
   );
