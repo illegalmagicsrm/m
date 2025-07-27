@@ -72,6 +72,9 @@ export default function ComboOfferSection({ onNavigate }: ComboOfferSectionProps
               <div key={product.id} className="flex-shrink-0">
                 <ProductCard product={product} onNavigate={onNavigate} />
       </div>
+          )
+          )
+          }
     </section>
   );
 }
