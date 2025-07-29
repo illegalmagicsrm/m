@@ -46,10 +46,48 @@ export default function Checkout({ onNavigate }: CheckoutProps) {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Process order
-    alert('Order placed successfully! We will contact you soon.');
-    clearCart();
-    onNavigate('home');
+    
+    // Process order by sending to backend
+    const orderData = {
+      items: cart.items,
+      total: total,
+      customer: {
+        name: `${customer.firstName} ${customer.lastName}`,
+        email: customer.email,
+        phone: customer.phone,
+        address: customer.address
+      },
+      paymentMethod: paymentMethod,
+      shipping: {
+        cost: shipping,
+        method: 'standard',
+        address: `${customer.address}, ${selectedDistrict}`
+      }
+    };
+
+    // Send order to backend
+    fetch('http://localhost:5000/api/orders', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(orderData)
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.success) {
+        alert(`Order placed successfully! Order Number: ${data.data.orderNumber}`);
+        clearCart();
+        onNavigate('home');
+      } else {
+        alert('Error placing order. Please try again.');
+        console.error('Order error:', data);
+      }
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      alert('Error placing order. Please check your connection and try again.');
+    });
   };
 
   const updateCustomer = (field: keyof Customer, value: string) => {
