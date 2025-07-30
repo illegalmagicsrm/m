@@ -47,8 +47,12 @@ export default function Checkout({ onNavigate }: CheckoutProps) {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Process order by sending to backend
+    // Generate fake order number for frontend demo
+    const orderNumber = `MM${Date.now().toString().slice(-10)}`;
+    
+    // Store order data in localStorage for thank you page
     const orderData = {
+      orderNumber,
       items: cart.items,
       total: total,
       customer: {
@@ -62,32 +66,15 @@ export default function Checkout({ onNavigate }: CheckoutProps) {
         cost: shipping,
         method: 'standard',
         address: `${customer.address}, ${selectedDistrict}`
-      }
-    };
-
-    // Send order to backend
-    fetch('http://localhost:5000/api/orders', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
       },
-      body: JSON.stringify(orderData)
-    })
-    .then(response => response.json())
-    .then(data => {
-      if (data.success) {
-        alert(`Order placed successfully! Order Number: ${data.data.orderNumber}`);
-        clearCart();
-        onNavigate('home');
-      } else {
-        alert('Error placing order. Please try again.');
-        console.error('Order error:', data);
-      }
-    })
-    .catch(error => {
-      console.error('Error:', error);
-      alert('Error placing order. Please check your connection and try again.');
-    });
+      createdAt: new Date().toISOString()
+    };
+    
+    localStorage.setItem('currentOrder', JSON.stringify(orderData));
+    
+    // Clear cart and navigate to thank you page
+    clearCart();
+    onNavigate('thank-you');
   };
 
   const updateCustomer = (field: keyof Customer, value: string) => {

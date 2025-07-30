@@ -12,6 +12,10 @@ import SearchResults from './components/SearchResults';
 import ProductsPage from './components/ProductsPage';
 import OffersPage from './components/OffersPage';
 import AboutPage from './components/AboutPage';
+import ShippingPage from './components/ShippingPage';
+import ReturnPolicyPage from './components/ReturnPolicyPage';
+import ContactPage from './components/ContactPage';
+import ThankYouPage from './components/ThankYouPage';
 import FAQPage from './components/FAQPage';
 import FAQSection from './components/FAQSection';
 import Footer from './components/Footer';
@@ -92,6 +96,18 @@ function App() {
       
       case 'about':
         return <AboutPage onNavigate={handleNavigation} />;
+      
+      case 'shipping':
+        return <ShippingPage onNavigate={handleNavigation} />;
+      
+      case 'returns':
+        return <ReturnPolicyPage onNavigate={handleNavigation} />;
+      
+      case 'contact':
+        return <ContactPage onNavigate={handleNavigation} />;
+      
+      case 'thank-you':
+        return <ThankYouPage onNavigate={handleNavigation} />;
       
       case 'faq':
         return <FAQPage onNavigate={handleNavigation} />;

@@ -28,7 +28,7 @@ export default function Header({ onNavigate, currentPage, onSearch }: HeaderProp
     { name: 'Products', id: 'products' },
     { name: 'Offers', id: 'offers' },
     { name: 'About', id: 'about' },
-    { name: 'FAQ', id: 'faq' }
+    { name: 'Contact', id: 'contact' }
   ];
 
   return (
