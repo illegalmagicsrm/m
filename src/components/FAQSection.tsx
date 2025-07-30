@@ -62,32 +62,32 @@ export default function FAQSection() {
           {faqs.map((faq) => (
             <div
               key={faq.id}
-              className="bg-white rounded-2xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl"
+              className="bg-white rounded-2xl shadow-sm hover:shadow-lg overflow-hidden transition-all duration-300"
             >
               <button
                 onClick={() => toggleFAQ(faq.id)}
-                className="w-full px-6 py-6 text-left flex items-center justify-between hover:bg-gray-50 transition-colors duration-200"
+                className="w-full px-6 py-5 text-left flex items-center justify-between hover:bg-gray-50 transition-all duration-300"
               >
-                <h3 className="text-lg font-semibold text-gray-900 pr-4">
+                <h3 className="text-base lg:text-lg font-semibold text-gray-900 pr-4 leading-relaxed">
                   {faq.question}
                 </h3>
                 <div className="flex-shrink-0">
                   {openFAQ === faq.id ? (
-                    <ChevronUp className="h-6 w-6 text-blue-600 transform transition-transform duration-200" />
+                    <ChevronUp className="h-5 w-5 lg:h-6 lg:w-6 text-blue-600 transform transition-all duration-300 rotate-180" />
                   ) : (
-                    <ChevronDown className="h-6 w-6 text-gray-400 transform transition-transform duration-200" />
+                    <ChevronDown className="h-5 w-5 lg:h-6 lg:w-6 text-gray-400 transform transition-all duration-300" />
                   )}
                 </div>
               </button>
               
               <div
-                className={`overflow-hidden transition-all duration-300 ease-in-out ${
-                  openFAQ === faq.id ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+                className={`overflow-hidden transition-all duration-500 ease-in-out ${
+                  openFAQ === faq.id ? 'max-h-96 opacity-100 pb-6' : 'max-h-0 opacity-0 pb-0'
                 }`}
               >
-                <div className="px-6 pb-6">
-                  <div className="border-t border-gray-100 pt-4">
-                    <p className="text-gray-700 leading-relaxed">
+                <div className="px-6">
+                  <div className="border-t border-gray-100 pt-5">
+                    <p className="text-gray-700 leading-relaxed text-sm lg:text-base">
                       {faq.answer}
                     </p>
                   </div>
@@ -104,13 +104,13 @@ export default function FAQSection() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
               href="tel:+8801234567890"
-              className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors"
+              className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300 hover:scale-105 shadow-lg"
             >
               Call Us: +880 1234-567890
             </a>
             <a
               href="mailto:info@malihasmiracle.com"
-              className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors"
+              className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300 hover:scale-105 shadow-lg"
             >
               Email: info@malihasmiracle.com
             </a>

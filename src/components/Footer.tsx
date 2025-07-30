@@ -58,11 +58,11 @@ export default function Footer() {
           <div>
             <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
             <ul className="space-y-2">
-              <li><button onClick={() => window.location.href = '#about'} className="text-gray-300 hover:text-green-400 transition-colors">About Us</button></li>
-              <li><button onClick={() => window.location.href = '#products'} className="text-gray-300 hover:text-green-400 transition-colors">Products</button></li>
-              <li><button onClick={() => window.location.href = '#offers'} className="text-gray-300 hover:text-green-400 transition-colors">Offers</button></li>
-              <li><button onClick={() => window.location.href = '#shipping'} className="text-gray-300 hover:text-green-400 transition-colors">Shipping Info</button></li>
-              <li><button onClick={() => window.location.href = '#contact'} className="text-gray-300 hover:text-green-400 transition-colors">Contact</button></li>
+              <li><a href="/about" className="text-gray-300 hover:text-green-400 transition-colors">About Us</a></li>
+              <li><a href="/products" className="text-gray-300 hover:text-green-400 transition-colors">Products</a></li>
+              <li><a href="/offers" className="text-gray-300 hover:text-green-400 transition-colors">Offers</a></li>
+              <li><a href="/shipping" className="text-gray-300 hover:text-green-400 transition-colors">Shipping Info</a></li>
+              <li><a href="/contact" className="text-gray-300 hover:text-green-400 transition-colors">Contact</a></li>
             </ul>
           </div>
 
@@ -70,11 +70,11 @@ export default function Footer() {
           <div>
             <h3 className="text-lg font-semibold mb-4">Customer Service</h3>
             <ul className="space-y-2">
-              <li><button onClick={() => window.location.href = '#faq'} className="text-gray-300 hover:text-green-400 transition-colors">Help Center</button></li>
-              <li><button onClick={() => window.location.href = '#shipping'} className="text-gray-300 hover:text-green-400 transition-colors">Shipping Info</button></li>
-              <li><button onClick={() => window.location.href = '#returns'} className="text-gray-300 hover:text-green-400 transition-colors">Returns & Exchanges</button></li>
-              <li><button onClick={() => window.location.href = '#contact'} className="text-gray-300 hover:text-green-400 transition-colors">Track Order</button></li>
-              <li><button onClick={() => window.location.href = '#about'} className="text-gray-300 hover:text-green-400 transition-colors">Privacy Policy</button></li>
+              <li><a href="/faq" className="text-gray-300 hover:text-green-400 transition-colors">Help Center</a></li>
+              <li><a href="/shipping" className="text-gray-300 hover:text-green-400 transition-colors">Shipping Info</a></li>
+              <li><a href="/returns" className="text-gray-300 hover:text-green-400 transition-colors">Returns & Exchanges</a></li>
+              <li><a href="/contact" className="text-gray-300 hover:text-green-400 transition-colors">Track Order</a></li>
+              <li><a href="/about" className="text-gray-300 hover:text-green-400 transition-colors">Privacy Policy</a></li>
             </ul>
           </div>
 
@@ -127,18 +127,18 @@ export default function Footer() {
               © 2025 Maliha's Miracle. All rights reserved.
             </p>
             <div className="flex items-center space-x-4 mt-4 md:mt-0 text-gray-400 text-sm">
-              <button onClick={() => window.location.href = '#contact'} className="hover:text-green-400 transition-colors">Contact</button>
+              <a href="/contact" className="hover:text-green-400 transition-colors">Contact</a>
               <span>•</span>
-              <button onClick={() => window.location.href = '#shipping'} className="hover:text-green-400 transition-colors">Shipping</button>
+              <a href="/shipping" className="hover:text-green-400 transition-colors">Shipping</a>
               <span>•</span>
-              <button onClick={() => window.location.href = '#returns'} className="hover:text-green-400 transition-colors">Returns</button>
+              <a href="/returns" className="hover:text-green-400 transition-colors">Returns</a>
             </div>
             <div className="flex items-center space-x-6 mt-4 md:mt-0">
               <span className="text-gray-400 text-sm">We accept:</span>
               <div className="flex space-x-2">
-                <div className="bg-gray-800 px-2 py-1 rounded text-xs">bKash</div>
-                <div className="bg-gray-800 px-2 py-1 rounded text-xs">Nagad</div>
-                <div className="bg-gray-800 px-2 py-1 rounded text-xs">Card</div>
+                <div className="bg-gray-800 px-3 py-1 rounded-lg text-xs font-medium">bKash</div>
+                <div className="bg-gray-800 px-3 py-1 rounded-lg text-xs font-medium">Nagad</div>
+                <div className="bg-gray-800 px-3 py-1 rounded-lg text-xs font-medium">Cards</div>
               </div>
             </div>
           </div>
