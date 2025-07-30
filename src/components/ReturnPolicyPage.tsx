@@ -289,7 +289,7 @@ export default function ReturnPolicyPage({ onNavigate }: ReturnPolicyPageProps) 
           <div className="mt-8 bg-green-50 border border-green-200 rounded-lg p-4">
             <p className="text-green-800 font-medium">
               💚 <strong>Our Promise:</strong> We're committed to your satisfaction. 
-              If you're not happy with your purchase, we'll make it right!
+              If you're not happy with your purchase, we\'ll make it right!
             </p>
           </div>
         </div>
